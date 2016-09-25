@@ -11,9 +11,9 @@ namespace w2{
 		Station();
 		~Station();
 
-		void set(const std::string& _str, unsigned int _numOfStuentPass, unsigned int _numOfAdultPass);
-		void update(PassType  type, int _numOfPass);
-		unsigned int inStock(PassType  type) const;
+		void set(const std::string& , unsigned  _numOfStuentPass, unsigned  _numOfAdultPass);
+		void update(PassType,   int );
+		unsigned inStock(PassType ) const;
 		const std::string& getStnName() const;
 
 	private:

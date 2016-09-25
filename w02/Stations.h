@@ -18,7 +18,7 @@ namespace w2
 
 	private:
 		Station* pStation;
-		int m_numOfStn;
+		unsigned m_numOfStn;
 	};
 }
 

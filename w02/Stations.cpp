@@ -41,7 +41,7 @@ namespace w2
 			if (m_numOfStn > 0){
 				pStation = new Station[m_numOfStn];
 
-				int i;
+				unsigned i;
 				for (i = 0; i < m_numOfStn; i++){
 					
 					fileIn.getline(stnName, MAX_PATH, ';');	
@@ -65,9 +65,10 @@ namespace w2
 
 	void Stations::update() const
 	{
-		int i;
+		
 		int nStudent = 0, nAdult = 0;
 		
+		unsigned i;
 		cout << "\nPasses Sold :" << endl;
 		cout << "-------------" << endl;
 		for (i = 0; i < m_numOfStn; i++){
@@ -84,7 +85,7 @@ namespace w2
 
 	void Stations::restock() const
 	{
-		int i;
+		unsigned i;
 		int nStudent = 0, nAdult = 0;
 
 		cout << "\nPasses Added :" << endl;
@@ -101,7 +102,7 @@ namespace w2
 	}
 	void Stations::report() const
 	{
-		int i;
+		unsigned i;
 		cout << "\nPasses in Stock : Student Adult" << endl;
 		cout << "-------------------------------" << endl;
 		//	     Spadina               100   200
