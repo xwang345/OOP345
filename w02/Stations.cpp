@@ -1,6 +1,8 @@
 #include "Stations.h"
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
+
 
 using namespace std;
 #define MAX_PATH 64
@@ -8,13 +10,16 @@ namespace w2
 {
 	Stations::Stations()
 	{
-		pStation = nullptr;
+		m_numOfStn = 0;
+		pStation = 0;
 	}
 
 
 	Stations::~Stations()
 	{
-
+		if (pStation){
+			delete[] pStation;
+		}
 	}
 
 
@@ -41,11 +46,11 @@ namespace w2
 			if (m_numOfStn > 0){
 				pStation = new Station[m_numOfStn];
 
+				fileIn.ignore();
 				unsigned i;
-				for (i = 0; i < m_numOfStn; i++){
+				for (i = 0; i < m_numOfStn; i++){					
 					
-					fileIn.getline(stnName, MAX_PATH, ';');	
-					
+					fileIn.getline(stnName, MAX_PATH, ';');						
 
 					fileIn.getline(readBuff, MAX_PATH, ' ');
 					nStudent = atoi(readBuff);
