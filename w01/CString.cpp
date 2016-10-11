@@ -1,3 +1,11 @@
+/////////////////////////////////////////////
+// OOP345 Workshop 2: Compound Types
+// Name: Sanghun Kim
+// Date: 10/10/2106
+// email: ksanghun@myseneca.ca
+/////////////////////////////////////////////
+
+
 #include "CString.h"
 
 

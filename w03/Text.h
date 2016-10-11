@@ -1,3 +1,11 @@
+/////////////////////////////////////////////
+// OOP345 Workshop 3: Move and Copy Semantics 
+// Name: Sanghun Kim
+// Date: 10/10/2106
+// email: ksanghun@myseneca.ca
+/////////////////////////////////////////////
+
+
 #pragma once
 
 #include <string>
