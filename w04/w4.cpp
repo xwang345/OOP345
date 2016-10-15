@@ -5,14 +5,7 @@
 /////////////////////////////////////////////
 // OOP345 Workshop 4: Templates 
 // Name: Sanghun Kim
-// Date: 10/10/2106
-// email: ksanghun@myseneca.ca
-/////////////////////////////////////////////
-
-/////////////////////////////////////////////
-// OOP345 Workshop 3: Move and Copy Semantics 
-// Name: Sanghun Kim
-// Date: 10/10/2106
+// Date: 10/14/2106
 // email: ksanghun@myseneca.ca
 /////////////////////////////////////////////
 
@@ -26,7 +19,7 @@
 template <typename K, typename V, int N>
 void display(const std::string& msg, const KVList<K, V, N>& list, int w) {
 	std::cout << msg;
-	for (int i = 0; i < list.size(); i++)
+	for (unsigned int i = 0; i < list.size(); i++)
 		std::cout << std::setw(w) << list.key(i)
 		<< " : " << list.value(i) << std::endl;
 }
@@ -37,7 +30,7 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	int width;
+//	int width;
 	bool keepreading;
 	std::cout << std::fixed << std::setprecision(2);
 

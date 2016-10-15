@@ -22,7 +22,7 @@ namespace w3
 		Text(Text&& text);		// move constructor
 
 		Text& operator=(const Text& text);	// copy assignment operator
-		Text&& operator=(Text&& text);		// move assignment operator
+		Text&& operator=( Text&& text);		// move assignment operator
 
 		~Text();
 

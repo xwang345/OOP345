@@ -21,7 +21,8 @@ public:
 	}
 };
 
-template <typename T = int, int size = 50> int testArray<T, size>::count = 0;;
+template <typename T = int, int size = 50> 
+int testArray<T, size>::count = 0;;
 
 
 template <typename T> struct S

@@ -90,7 +90,7 @@ namespace w3
 		init(text);
 		return *this;
 	}
-	Text&& Text::operator=(Text&& text)		// move assignment operator
+	Text&& Text::operator=( Text&& text)		// move assignment operator
 	{
 		m_numOfString = text.size();
 		m_pString = text.m_pString;
