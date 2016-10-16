@@ -17,6 +17,36 @@ void print(A&& a)      { a.display("rvalue "); }
 
 #include "testcode.h"
 #include "testArray.h"
+
+
+#include <vector>
+
+int solution(std::vector<int> &A) {
+	// write your code in C++11 (g++ 4.8.2)
+	unsigned int i = 0, k = 0, index = 0;
+	long int sum1 = 0, sum2 = 0;
+	int size = sizeof(long long);
+	for (i = 1; i<A.size() - 1; i++){
+		sum1 = sum2 = 0;
+		for (k = 0; k<i; k++){
+			sum1 += A[k];
+		}
+
+		for (k = i + 1; k<A.size(); k++){
+			sum2 += A[k];
+		}
+
+		if (sum1 == sum2){
+			index = i;
+		}
+	}
+	return index;
+}
+
+
+
+
+
 using namespace std;
 int main() {
 	//A a(10);
@@ -74,6 +104,20 @@ int main() {
 	std::cout << testArray<>::cnt() << std::endl;
 	std::cout << testArray<double>::cnt() << std::endl;
 	std::cout << testArray<int, 40>::cnt() << std::endl;
+
+
+	std::vector<int> A;
+	A.push_back(-1);
+	A.push_back(3);
+	A.push_back(-4);
+	A.push_back(5);
+	A.push_back(1);
+	A.push_back(-6);
+	A.push_back(2);
+	A.push_back(1);
+	int ans = solution(A);
+
+
 
 
 }
