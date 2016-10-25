@@ -46,9 +46,44 @@ int solution(std::vector<int> &A) {
 
 
 
+double foo(int a, double b)
+{
+	for (int i = 0; i < a; i++){
+		b += b;
+	}
+	return b;
+}
+
+class O
+{
+public:
+	double operator()(int x, double y) { 
+		while (x > 0){
+			y -= 1.0;
+			x--;
+		}
+		return y;
+	}
+};
+
+template<typename T>
+void call(int x, double y, T&func)
+{
+	std::cout << func(x, y) << std::endl;
+}
+
 
 using namespace std;
 int main() {
+
+	O o;
+	auto l = [] (int x, double y) { return x - y; };
+
+	call(3, 5.0, foo);
+	call(5, 3.0, o);
+	call(3, 2.0, l);
+
+
 	//A a(10);
 	//print(a);
 	//print(A(20));
@@ -59,12 +94,12 @@ int main() {
 	//int c = 2;
 	//int d = 7;
 
-	string str1 = "abc";
-	string str2 = "def";
+	//string str1 = "abc";
+	//string str2 = "def";
 
-	cout << str1 << str2 << endl;
-	swapTest(str1, str2);
-	cout << str1 << str2 << endl;
+	//cout << str1 << str2 << endl;
+	//swapTest(str1, str2);
+	//cout << str1 << str2 << endl;
 	
 
 	//cout << c << d << endl;
@@ -80,7 +115,7 @@ int main() {
 	//cout << k << j << res << endl;
 
 
-	cout << "templete Class Test" << endl;
+//	cout << "templete Class Test" << endl;
 
 	//testArray<> a, b;
 
@@ -95,27 +130,27 @@ int main() {
 
 	
 
-	testArray<> s, t;
-	testArray<double> u,c;
-	testArray<int, 40> v;
-	testArray<int, 50> z;
+	//testArray<> s, t;
+	//testArray<double> u,c;
+	//testArray<int, 40> v;
+	//testArray<int, 50> z;
 
 
-	std::cout << testArray<>::cnt() << std::endl;
-	std::cout << testArray<double>::cnt() << std::endl;
-	std::cout << testArray<int, 40>::cnt() << std::endl;
+	//std::cout << testArray<>::cnt() << std::endl;
+	//std::cout << testArray<double>::cnt() << std::endl;
+	//std::cout << testArray<int, 40>::cnt() << std::endl;
 
 
-	std::vector<int> A;
-	A.push_back(-1);
-	A.push_back(3);
-	A.push_back(-4);
-	A.push_back(5);
-	A.push_back(1);
-	A.push_back(-6);
-	A.push_back(2);
-	A.push_back(1);
-	int ans = solution(A);
+	//std::vector<int> A;
+	//A.push_back(-1);
+	//A.push_back(3);
+	//A.push_back(-4);
+	//A.push_back(5);
+	//A.push_back(1);
+	//A.push_back(-6);
+	//A.push_back(2);
+	//A.push_back(1);
+	//int ans = solution(A);
 
 
 
