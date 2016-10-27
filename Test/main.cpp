@@ -76,12 +76,44 @@ void call(int x, double y, T&func)
 using namespace std;
 int main() {
 
-	O o;
-	auto l = [] (int x, double y) { return x - y; };
+	std::vector<int> a = { 1, 2, 3, 4 };
+	std::vector<int> b;
+	std::vector<int> c;
 
-	call(3, 5.0, foo);
-	call(5, 3.0, o);
-	call(3, 2.0, l);
+	std::cout << "vector a" << a.size() << endl;
+	b = a;
+	std::cout << "vector a_copy---" << a.size() << endl;
+	c = std::move(a);
+	std::cout << "vector a_move---" << a.size() << endl;
+
+
+	std::vector<const int*> pInt;
+
+	int tmp = 1;
+	const int& tt = tmp;
+	std::cout << "tt  " << tt << endl;
+	std::cout << "tt1  " << &tt << endl;
+	int i = tt;
+	std::cout << "i  " << i << endl;
+	std::cout << "i&  " << &i << endl;
+
+	int* pp = new int;
+	pp = &i;
+	std::cout << "pp  " << pp << endl;
+	std::cout << "pp*  " << *pp << endl;
+
+
+	//pInt.push_back(pp);
+	//std::cout << "vec  " << *pInt[0] << endl;
+	
+	delete pp;
+
+	//O o;
+	//auto l = [] (int x, double y) { return x - y; };
+
+	//call(3, 5.0, foo);
+	//call(5, 3.0, o);
+	//call(3, 2.0, l);
 
 
 	//A a(10);
