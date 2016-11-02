@@ -73,40 +73,85 @@ void call(int x, double y, T&func)
 }
 
 
+
+int foo()
+{
+	static int x = 10;
+	{
+		int x = 5;
+		x += x;
+	}
+	return x;
+}
+
+
+class Bob{
+	int t;
+public:
+	Bob() { t = 0; }
+	Bob(int p) { t = p; }
+	bool operator > (int p) {
+		return t > p;
+	}
+};
+
+
+template<typename T>
+void callMe(T& pCall){
+	static int x = 8;
+	x++;
+	if (pCall > x){
+		cout << x << endl;
+	}
+}
+
+
+
 using namespace std;
 int main() {
 
-	std::vector<int> a = { 1, 2, 3, 4 };
-	std::vector<int> b;
-	std::vector<int> c;
 
-	std::cout << "vector a" << a.size() << endl;
-	b = a;
-	std::cout << "vector a_copy---" << a.size() << endl;
-	c = std::move(a);
-	std::cout << "vector a_move---" << a.size() << endl;
+	Bob a, b;
+	int i = 10;
+	callMe(a);
+	callMe(i);
+	callMe(b);
 
 
-	std::vector<const int*> pInt;
 
-	int tmp = 1;
-	const int& tt = tmp;
-	std::cout << "tt  " << tt << endl;
-	std::cout << "tt1  " << &tt << endl;
-	int i = tt;
-	std::cout << "i  " << i << endl;
-	std::cout << "i&  " << &i << endl;
 
-	int* pp = new int;
-	pp = &i;
-	std::cout << "pp  " << pp << endl;
-	std::cout << "pp*  " << *pp << endl;
+
+	//std::vector<int> a = { 1, 2, 3, 4 };
+	//std::vector<int> b;
+	//std::vector<int> c;
+
+	//std::cout << "vector a" << a.size() << endl;
+	//b = a;
+	//std::cout << "vector a_copy---" << a.size() << endl;
+	//c = std::move(a);
+	//std::cout << "vector a_move---" << a.size() << endl;
+
+
+	//std::vector<const int*> pInt;
+
+	//int tmp = 1;
+	//const int& tt = tmp;
+	//std::cout << "tt  " << tt << endl;
+	//std::cout << "tt1  " << &tt << endl;
+	//int i = tt;
+	//std::cout << "i  " << i << endl;
+	//std::cout << "i&  " << &i << endl;
+
+	//int* pp = new int;
+	//pp = &i;
+	//std::cout << "pp  " << pp << endl;
+	//std::cout << "pp*  " << *pp << endl;
 
 
 	//pInt.push_back(pp);
 	//std::cout << "vec  " << *pInt[0] << endl;
 	
-	delete pp;
+//	delete pp;
 
 	//O o;
 	//auto l = [] (int x, double y) { return x - y; };
@@ -184,6 +229,18 @@ int main() {
 	//A.push_back(1);
 	//int ans = solution(A);
 
+
+	int a1 = 3;
+	int a2 = 3;
+	int a3 = 3;
+	int a4 = 3;
+
+	if ((a1 == a2) && (a2 == a3) && (a3 == a4)){
+		std::cout << "Match" << endl;
+	}
+	else{
+		std::cout << "Not Match" << endl;
+	}
 
 
 
