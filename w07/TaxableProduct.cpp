@@ -1,12 +1,38 @@
+/////////////////////////////////////////////
+// Workshop 7 - STL Containers
+// Name: Sanghun Kim
+// Date: 11/10/2106
+// email: ksanghun@myseneca.ca
+/////////////////////////////////////////////
+
 #include "TaxableProduct.h"
+#include <stdlib.h>
 
 namespace w7
 {
-	TaxableProduct::TaxableProduct()
+	TaxableProduct::TaxableProduct() : Product()
 	{
-		tt = 100;
+		taxrate[0] = 1.13;	 // for HTS
+		taxrate[1] = 1.08;  // for PST
 	}
 
+	TaxableProduct::TaxableProduct(const unsigned int pnum, const double cost, const char* tax)
+	{
+		taxrate[0] = 1.13;	 // for HTS
+		taxrate[1] = 1.08;  // for PST
+
+		pnumber = pnum;
+		pcost = cost;
+
+		if (tax){
+			if (tax[0] == 'H'){
+				taxable = "HTS";
+			}
+			else if (tax[0] == 'P'){
+				taxable = "PST";
+			}
+		}
+	}
 
 	TaxableProduct::~TaxableProduct()
 	{
@@ -14,20 +40,60 @@ namespace w7
 
 	double TaxableProduct::getCharge() const
 	{
-		return 0;
+		if (taxable == "HTS"){
+			return pcost * taxrate[0];
+		}
+		else if(taxable == "PST"){
+			return pcost * taxrate[1];
+		}		
+		return pcost;
 	}
-	void TaxableProduct::display(std::ostream&) const
+
+	void TaxableProduct::display(std::ostream& os) const
 	{
-
+		os << std::fixed << std::right << std::setw(10) << pnumber << std::setprecision(2) << std::setw(10) << pcost << std::setw(8) << taxable << std::endl;
 	}
-
 
 	iProduct* readProduct(std::ifstream& fs)
 	{
-		TaxableProduct *item;
+		std::string readbuff, token;
+		std::string delimiter = " ";
+		size_t pos;
+					
+		// get one line ===============//
+		std::getline(fs, readbuff);
+		unsigned int pnum = 0;
+		float cost = 0;
+		std::vector<std::string> readItem;
+		
+		while ((pos = readbuff.find(delimiter)) != std::string::npos) {
+			token = readbuff.substr(0, pos);
+			readbuff.erase(0, pos + delimiter.length());
+			if (token.length()>0){
+				readItem.push_back(token);
+			}
+		}
+		if (readbuff.length() > 0){
+			readItem.push_back(readbuff);
+		}
 
 
-		return item;
+		// return item =======================//
+		if (readItem.size() == 2){
+			Product* pItem = new Product(atoi(readItem.at(0).data()), atof(readItem.at(1).data()));
+			return pItem;
+		}
+		else if (readItem.size() == 3){
+			TaxableProduct* pItem = new TaxableProduct(atoi(readItem.at(0).data()), atof(readItem.at(1).data()), readItem.at(2).data());
+			return pItem;
+		}
+		else if (readItem.size()==0){  // end of file stream		
+			return 0;
+		}
+		else{
+			throw "Something is wrong in data file";
+			return 0;
+		}
 	}
 
 

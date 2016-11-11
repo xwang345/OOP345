@@ -1,3 +1,10 @@
+/////////////////////////////////////////////
+// Workshop 7 - STL Containers
+// Name: Sanghun Kim
+// Date: 11/10/2106
+// email: ksanghun@myseneca.ca
+/////////////////////////////////////////////
+
 #ifndef _SALE_H_
 #define _SALE_H_
 
