@@ -8,7 +8,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-
+class Utilities;
 class Task {
 	std::string name;          // name of the task
 	std::string slots;         // number of slots
@@ -25,8 +25,10 @@ public:
 	const std::string& getName() const;
 	unsigned int getSlots() const;
 	const Task* getNextTask(Quality) const;
-	void display(std::ostream&) const;
+	void display(std::ostream& os) const;
 	static size_t getFieldWidth();
+
+
 };
 
-bool operator==(const Task&, const Task&);
+bool operator==(const Task& t1, const Task& t2);

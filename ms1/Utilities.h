@@ -15,10 +15,15 @@ class Utilities {
 	static std::ofstream logFile; // log file
 public:
 	Utilities();
-	size_t getFieldWidth() const;
-	const std::string nextToken(const std::string&, size_t&, bool&);
-	static void setDelimiter(const char);
+	void setFieldWidth(size_t fw) { field_width = fw; }
+	size_t getFieldWidth() const { return field_width; }
+	const std::string nextToken(const std::string& str, size_t& next_pos, bool& more);
+	static void setDelimiter(const char c);
 	static void setLogFile(const char*);
 	static std::ofstream& getLogFile();
+
+	// add trim functions //
+	std::string& ltrim(std::string& s, const char* t = " \t\n\r");
+	std::string& rtrim(std::string& s, const char* t = " \t\n\r");
 };
 
