@@ -43,7 +43,8 @@ unsigned int Task::getSlots() const
 const Task* Task::getNextTask(Quality quantity) const
 {
 	if (!pNextTask[quantity]) {
-		throw std::string("*** Validate  [") + nextTask[quantity] + std::string("] @ [") + name + std::string("] ***");
+		std::string errmsg = "*** Validate  [" + nextTask[quantity] + "] @ [" + name + "] ***";
+		throw errmsg;
 	}
 	return pNextTask[quantity];
 	

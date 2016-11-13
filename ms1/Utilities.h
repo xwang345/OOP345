@@ -19,7 +19,7 @@ public:
 	size_t getFieldWidth() const { return field_width; }
 	const std::string nextToken(const std::string& str, size_t& next_pos, bool& more);
 	static void setDelimiter(const char c);
-	static void setLogFile(const char*);
+	static void setLogFile(const char* filename);
 	static std::ofstream& getLogFile();
 
 	// add trim functions //
