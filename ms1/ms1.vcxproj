@@ -11,9 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1B3C2A92-B973-40CF-B56F-47912030B3AE}</ProjectGuid>
-    <RootNamespace>w7</RootNamespace>
-    <ProjectName>w07</ProjectName>
+    <ProjectGuid>{1168FAB2-DF23-46B8-8FB2-F98DCFECB4B1}</ProjectGuid>
+    <RootNamespace>ms1</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,14 +64,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="iProduct.h" />
-    <ClInclude Include="Product.h" />
-    <ClInclude Include="Sale.h" />
+    <ClCompile Include="milestone_1.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Product.cpp" />
-    <ClCompile Include="Sale.cpp" />
-    <ClCompile Include="w7.cpp" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
