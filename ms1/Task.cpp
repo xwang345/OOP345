@@ -14,14 +14,19 @@ Task::Task(const std::string& strRecord)
 	size_t pos = 0;
 	bool more = true;
 	name = util.nextToken(strRecord, pos, more);
-	if (more){
-		slots = util.nextToken(strRecord, pos, more);
+	if (!name.empty()){
 		if (more){
-			nextTask[passed] = util.nextToken(strRecord, pos, more);
+			slots = util.nextToken(strRecord, pos, more);
 			if (more){
-				nextTask[redirect] = util.nextToken(strRecord, pos, more);
+				nextTask[passed] = util.nextToken(strRecord, pos, more);
+				if (more){
+					nextTask[redirect] = util.nextToken(strRecord, pos, more);
+				}
 			}
-		}		
+		}
+	}
+	else{
+		throw "Error in File";
 	}
 
 	field_width = util.getFieldWidth();
