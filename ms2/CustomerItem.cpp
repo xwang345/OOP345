@@ -31,9 +31,13 @@ const std::string& CustomerItem::getName() const
 }
 void CustomerItem::display(std::ostream& os) const
 {
+	char cSign;
+	if (filled)	cSign = '+';
+	else cSign = '-';
+
 	if (!name.empty()) {
-		os << " " << (filled ? "+" : "-") << " [" << std::right << std::setw(CODE_WIDTH) 
-			<< std::setfill('0') << code << std::setfill(' ') << "] "
-			<< name << std::endl;
+		os << " " << cSign << " [" << std::right << std::setw(CODE_WIDTH) 
+		   << std::setfill('0') << code << std::setfill(' ') << "] "
+		   << name << std::endl;
 	}
 }

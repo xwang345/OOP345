@@ -28,7 +28,8 @@ Item::Item(const std::string& strRecord) :code(1)
 		}
 	}
 	else{
-		throw "Name error";
+		std::string errmsg = strRecord + "<-- *** no token found before the delimiter ***";
+		throw errmsg;
 	}
 
 	field_width = util.getFieldWidth();

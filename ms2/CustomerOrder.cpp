@@ -37,13 +37,15 @@ CustomerOrder::CustomerOrder(const std::string& strRecord) : nOrders(0), order(n
 		field_width = util.getFieldWidth();
 	}
 	else{
-		throw "Name error";
+		std::string errmsg = strRecord + "<-- *** no token found before the delimiter ***";
+		throw errmsg;
 	}
 }
 
 CustomerOrder::CustomerOrder(const CustomerOrder& cus) : nOrders(0), order(nullptr)
 {
-	throw "Error: copy constructor is called";
+	std::string errmsg = "Error: copy constructor is called";
+	throw errmsg;
 }
 
 CustomerOrder::CustomerOrder(CustomerOrder&& cus) : nOrders(0), order(nullptr)
@@ -89,7 +91,8 @@ unsigned int CustomerOrder::noOrders() const {
 
 const std::string& CustomerOrder::operator[](unsigned int i) const {
 	if (i >= nOrders) {
-		throw " The index is out of bounds";
+		std::string errmsg = "The index is out of bounds";
+		throw errmsg;
 	}
 	return order[i].getName();
 }
