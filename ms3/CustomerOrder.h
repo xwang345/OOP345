@@ -1,13 +1,16 @@
+#pragma once
+// CustomerOrder Milestone - CustomerOrder Interface
+// CustomerOrder.h
+// Chris Szalwinski
+// v1.0 - 9/11/2015
+// v2.0 - 23/02/2016
+#include <iostream>
+#include <string>
 /////////////////////////////////////////////
 // OOP345 milestone 2: 
 // Name: Sanghun Kim
 // Date: 11/13/2106
 // email: ksanghun@myseneca.ca
-
-#pragma once
-#include <iostream>
-#include <string>
-
 
 #ifndef _MSC_VER
 #define NOEXCEPT noexcept
