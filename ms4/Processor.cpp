@@ -20,7 +20,6 @@ item_(nullptr), is_a_filler(true), Task(record)
 void Processor::load(Item& item)
 {	
 	std::cout << "KSH-------Processor::load" << std::endl;
-
 	item_ = &item;
 	if (!Task::getName().compare(item.getFiller())){
 		is_a_filler = true;
@@ -70,6 +69,13 @@ void Processor::display(std::ostream& os) const
 {
 //	std::cout << "KSH-------Processor::display" << std::endl;
 	Task::display(os);
+
+	if (item_){
+		os << " Item to add :" << item_->getName() << std::endl;
+	}
+	else{
+		os << " Item to add :" << "  ---" << std::endl;
+	}
 	
 
 }

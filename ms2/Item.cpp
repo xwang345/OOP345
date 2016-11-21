@@ -13,6 +13,8 @@ Item::Item(const std::string& strRecord) :code(1)
 	size_t pos = 0;
 	bool more = true;
 	name = util.nextToken(strRecord, pos, more);
+	field_width = util.getFieldWidth();
+
 	if (!name.empty()){
 		if (more){
 			filler = util.nextToken(strRecord, pos, more);
@@ -32,7 +34,7 @@ Item::Item(const std::string& strRecord) :code(1)
 		throw errmsg;
 	}
 
-	field_width = util.getFieldWidth();
+	
 }
 
 bool Item::empty() const {
