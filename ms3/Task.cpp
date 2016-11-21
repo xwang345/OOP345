@@ -3,6 +3,13 @@
 #include <iomanip>
 
 size_t Task::field_width = 1;
+
+Task::Task()
+{
+	slots = "1";
+	pNextTask[0] = pNextTask[1] = nullptr;
+}
+
 Task::Task(const std::string& strRecord)
 {
 	slots = "1";
@@ -84,14 +91,17 @@ void Task::display(std::ostream& os) const
 	os << "Task Name    :  "<< std::left;	
 	os << std::setw(width) << tmpname << tmpslot << std::endl;
 		
+	std::string strTitle[2];
+	strTitle[passed] = " Continue to :  ";
+	strTitle[redirect] = " Redirect to :  ";
 	for (unsigned int i = passed; i <= redirect; i++){
 		if (!nextTask[i].empty()){
 			tmpname = "[" + nextTask[i] + "]";
 			if (pNextTask[i]){
-				os << " Continue to :  " << std::setw(width) << tmpname << std::endl;
+				os << strTitle[i] << std::setw(width) << tmpname << std::endl;
 			}
 			else{
-				os << " Continue to :  " << std::setw(width) << tmpname << "*** to be validated ***" << std::endl;
+				os << strTitle[i] << std::setw(width) << tmpname << "*** to be validated ***" << std::endl;
 			}
 		}
 	}
