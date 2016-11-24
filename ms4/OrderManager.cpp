@@ -6,7 +6,7 @@
 
 CustomerOrder&& OrderManager::extract()
 {	
-	return std::move(*this->end());
+	return std::move(this->back());
 }
 
 void OrderManager::validate(const ItemManager& itemMng, std::ostream& os)
