@@ -56,7 +56,7 @@ const Task* Task::getNextTask(Quality quantity) const
 {
 	if (!pNextTask[quantity]) {
 		std::string errmsg = "*** Validate  [" + nextTask[quantity] + "] @ [" + name + "] ***";
-		throw errmsg;
+	//	throw errmsg;
 	}
 	return pNextTask[quantity];
 	

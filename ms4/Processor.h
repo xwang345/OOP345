@@ -11,6 +11,7 @@
 #include <functional>
 #include "CustomerOrder.h"
 #include "Task.h"
+#include <vector>
 
 class Item;
 class OrderManager;
@@ -24,11 +25,11 @@ class Processor : public Task {
 	bool is_a_filler;                   // type of processor (filler, retriever)
 	std::function<Task::Quality(int)> inspector; // inspects the quality
 public:
-	Processor();
 	Processor(const std::string& record, std::function<Task::Quality(int)> func);
 	void load(Item& item);
 	void accept(CustomerOrder&& order);
 	void pass(int i);
+//	void pass(int i, std::string& str);
 	void advance();
 	bool empty() const;
 	bool readyToShip() const;

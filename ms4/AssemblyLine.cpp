@@ -57,18 +57,23 @@ void AssemblyLine::validate(ItemManager& itemManager, std::ostream& os)
 }
 void AssemblyLine::loadItem(ItemManager& itemManager)
 {
-//	std::cout << "KSH-------AssemblyLine::loadItem" << std::endl;
-	std::vector<Processor>::iterator iter_pro = this->begin();
-	std::vector<Item>::iterator iter_itm = itemManager.begin();
+	size_t pnum = this->size();
+	size_t inum = itemManager.size();
 
-	for (; iter_pro != this->end(); iter_pro++){
-		for (; iter_itm != itemManager.end(); iter_itm++){
-			if (iter_pro->getName() == iter_itm->getFiller() || iter_pro->getName() == iter_itm->getRemover()){
-				iter_pro->load(*iter_itm);
+	for (size_t i = 0; i < pnum; i++){
+		for (size_t j = 0; j < inum; j++){
+			//std::string name = this->at(i).getName();
+			//std::string filler = itemManager[j].getFiller();
+			//std::string remover = itemManager[j].getRemover();
+			//if ((this->at(i).getName() == itemManager[j].getFiller())){
+			//	this->at(i).load(itemManager[j]);
+			//}
+			if ((this->at(i).getName() == itemManager[j].getFiller()) || (this->at(i).getName() == itemManager[j].getRemover())){
+				this->at(i).load(itemManager[j]);
 			}
+
 		}
 	}
-
 }
 // processing
 void AssemblyLine::loadOrders(OrderManager& orderManager, const std::string& entryProcessor, std::ostream& os)
@@ -83,39 +88,44 @@ void AssemblyLine::loadOrders(OrderManager& orderManager, const std::string& ent
 	if (iter != this->end()){  // if entryProcrssor is exist in AssemblyLine, 
 		while (!orderManager.empty()) {
 			// moves the customer orders to assembly line's entryProcessor.  
-			iter->accept(orderManager.extract());		
+			iter->accept(orderManager.extract());  // waiting entry processor //
 			orderManager.pop_back();
 		}
 	}	
 }
 bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 {
-//	std::cout << "KSH-------AssemblyLine::process" << std::endl;
-	for (size_t i = 0; i < n; i++) {
-		for (auto& p : *this) {
-			if (!p.empty()) {
-				p.advance();
-				if (p.readyToPass()) {
+	for (size_t k = 0; k < n; k++) {		
+		size_t pnum = this->size();
 
-					try {
-				//	//	srand(time(NULL));
-						p.pass(rand() % 100);
-					}
-					catch (const std::string& msg) {
-						p.ship(finishing);
-						loadOrders(finishing, msg, std::cerr);
-					}
+		bool allempty = true;
+
+		for (size_t i = 0; i <pnum; i++){
+			Processor&& p = std::move(this->at(i));
+			//	for (auto& p : *this) {
+			if (!p.empty()) {
+				p.advance();		
+
+				if (p.readyToPass()) {
+					p.pass(rand()%100);
 				}
 
 				if (p.readyToShip()) {
 					p.ship(finishing);
-					Utilities::getLogFile() << "Task Completed\n";
-					if (p.empty())
-						return true;
+					Utilities::getLogFile() << "Task Completed\n";					
+				}
+
+				if (!p.empty()){
+					allempty  = false;
 				}
 			}
+
 		}
-	}
+
+		if (allempty == true){
+			return true;
+		}
+	}	
 	return false;
 }
 // reporting
