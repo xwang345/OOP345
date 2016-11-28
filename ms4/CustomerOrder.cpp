@@ -98,10 +98,12 @@ const std::string& CustomerOrder::operator[](unsigned int i) const {
 }
 
 void CustomerOrder::fill(Item& item) {
-	for (unsigned int i = 0; i < nOrders; i++) {		
+	for (unsigned int i = 0; i < nOrders; i++) {
 		if (!order[i].getName().compare(item.getName())) {
-			order[i].fill(item.getCode());
-			item++;
+			if (order[i].isFilled() == false){
+				order[i].fill(item.getCode());
+				item++;
+			}
 		}
 	}
 }

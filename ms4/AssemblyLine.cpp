@@ -57,21 +57,23 @@ void AssemblyLine::validate(ItemManager& itemManager, std::ostream& os)
 }
 void AssemblyLine::loadItem(ItemManager& itemManager)
 {
+	//for (auto& i : *this)
+	//	for (auto& n : itemManager)
+	//		if (i.getName() == n.getFiller() || i.getName() == n.getRemover())
+	//			i.load(n);
+
 	size_t pnum = this->size();
 	size_t inum = itemManager.size();
 
 	for (size_t i = 0; i < pnum; i++){
 		for (size_t j = 0; j < inum; j++){
-			//std::string name = this->at(i).getName();
-			//std::string filler = itemManager[j].getFiller();
-			//std::string remover = itemManager[j].getRemover();
-			//if ((this->at(i).getName() == itemManager[j].getFiller())){
-			//	this->at(i).load(itemManager[j]);
-			//}
-			if ((this->at(i).getName() == itemManager[j].getFiller()) || (this->at(i).getName() == itemManager[j].getRemover())){
+			std::string name = this->at(i).getName();
+			std::string filler = itemManager[j].getFiller();
+			std::string remover = itemManager[j].getRemover();
+
+			if (!name.compare(filler)){
 				this->at(i).load(itemManager[j]);
 			}
-
 		}
 	}
 }
@@ -95,37 +97,32 @@ void AssemblyLine::loadOrders(OrderManager& orderManager, const std::string& ent
 }
 bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 {
-	for (size_t k = 0; k < n; k++) {		
+	for (size_t k = 0; k < n; k++) {
 		size_t pnum = this->size();
-
 		bool allempty = true;
-
-		for (size_t i = 0; i <pnum; i++){
+		for (size_t i = 0; i < pnum; i++){
 			Processor&& p = std::move(this->at(i));
-			//	for (auto& p : *this) {
+
 			if (!p.empty()) {
-				p.advance();		
+				p.advance();
 
 				if (p.readyToPass()) {
-					p.pass(rand()%100);
+					p.pass(rand() % 100);
 				}
 
 				if (p.readyToShip()) {
 					p.ship(finishing);
-					Utilities::getLogFile() << "Task Completed\n";					
+					Utilities::getLogFile() << "Task Completed\n";
 				}
-
-				if (!p.empty()){
-					allempty  = false;
-				}
-			}
-
+				allempty = false;
+			}			
 		}
 
 		if (allempty == true){
 			return true;
 		}
-	}	
+	}
+		
 	return false;
 }
 // reporting

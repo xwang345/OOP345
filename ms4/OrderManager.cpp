@@ -27,10 +27,8 @@ void OrderManager::validate(const ItemManager& itemMng, std::ostream& os)
 }
 void OrderManager::display(std::ostream& os) const
 {
-	std::vector<CustomerOrder>::const_iterator iter = this->cbegin();
-	//	auto iter = this->cbegin();
-	for (; iter != this->cend(); iter++){
-		iter->display(os);
+	int i = (int)this->size()-1;
+	for (; i >= 0; i--){
+		this->at(i).display(os);
 	}
-
 }
