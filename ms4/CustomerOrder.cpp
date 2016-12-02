@@ -42,18 +42,20 @@ CustomerOrder::CustomerOrder(const std::string& strRecord) : nOrders(0), order(n
 	}
 }
 
-CustomerOrder::CustomerOrder(const CustomerOrder& cus) : nOrders(0), order(nullptr)
+CustomerOrder::CustomerOrder(const CustomerOrder& cus) : nOrders(0), order(nullptr) 
 {
 	std::string errmsg = "Error: copy constructor is called";
 	throw errmsg;
 }
 
-CustomerOrder::CustomerOrder(CustomerOrder&& cus) : nOrders(0), order(nullptr)
+CustomerOrder::CustomerOrder(CustomerOrder&& cus) NOEXCEPT
 {	
+	nOrders = 0;
+	order = nullptr;
 	*this = std::move(cus);
 }
 
-CustomerOrder&& CustomerOrder::operator=(CustomerOrder&& cus)
+CustomerOrder&& CustomerOrder::operator=(CustomerOrder&& cus) NOEXCEPT
 {
 	if (this != &cus) {
 		if (order) {

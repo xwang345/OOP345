@@ -3,6 +3,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <math.h>
 
 namespace w8
 {
@@ -45,7 +46,7 @@ namespace w8
 			for (size_t i = 0; i < yvalues.size(); i++){
 				sum += (yvalues[i] - meanValue)*(yvalues[i] - meanValue);
 			}
-			return std::sqrt(sum / (yvalues.size() - 1));
+			return sqrt(sum / (yvalues.size() - 1));
 
 		}
 

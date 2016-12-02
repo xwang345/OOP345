@@ -103,6 +103,7 @@ bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 		for (size_t i = 0; i < pnum; i++){
 			Processor&& p = std::move(this->at(i));
 
+
 			if (!p.empty()) {
 				p.advance();
 
@@ -112,8 +113,9 @@ bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 
 				if (p.readyToShip()) {
 					p.ship(finishing);
-					Utilities::getLogFile() << "Task Completed\n";
+				//	Utilities::getLogFile() << "Task Completed\n";
 				}
+
 				allempty = false;
 			}			
 		}
@@ -129,9 +131,14 @@ bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 void AssemblyLine::display(std::ostream& os) const
 {
 //	std::cout << "KSH-------AssemblyLine::display" << std::endl;
+	//std::vector<Processor>::const_iterator iter = this->cbegin();
+	//for (; iter != this->cend(); iter++){
+	//	iter->display(os);		
+	//}
+
+
 	std::vector<Processor>::const_iterator iter = this->cbegin();
 	for (; iter != this->cend(); iter++){
-		iter->display(os);		
+		iter->display(os);
 	}
-
 }

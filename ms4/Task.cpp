@@ -33,7 +33,8 @@ Task::Task(const std::string& strRecord)
 		}
 	}
 	else{
-		throw "Error in File";
+		std::string errmsg = "Error in Record";
+		throw errmsg;
 	}
 
 	field_width = util.getFieldWidth();
