@@ -81,7 +81,7 @@ void Task::display(std::ostream& os) const
 	std::string tmpname = "[" + name + "]";
 	std::string tmpslot = "[" + slots + "]";
 	
-	os << "Task Name    :  "<< std::left;	
+	os << "Task Name    : "<< std::left;	
 	os << std::setw(width) << tmpname << tmpslot << std::endl;
 		
 	for (unsigned int i = passed; i <= redirect; i++){

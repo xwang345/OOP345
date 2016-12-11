@@ -134,9 +134,9 @@ void Processor::display(std::ostream& os) const
 	Task::display(os);
 
 	if (item_){
-		os << " Item to add :  ";		item_->display(os);
+		os << " Item to add : ";		item_->display(os);
 	}
 	else{
-		os << " Item to add :" << "  ---" << std::endl;
+		os << " Item to add :" << " ---" << std::endl;
 	}
 }

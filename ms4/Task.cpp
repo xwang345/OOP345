@@ -85,16 +85,16 @@ bool Task::validate(const Task& task)
 
 void Task::display(std::ostream& os) const
 {
-	size_t width = field_width + 2;
+	size_t width = field_width + 3;
 	std::string tmpname = "[" + name + "]";
 	std::string tmpslot = "[" + slots + "]";
 	
-	os << "Task Name    :  "<< std::left;	
+	os << "Task Name    : "<< std::left;	
 	os << std::setw(width) << tmpname << tmpslot << std::endl;
 		
 	std::string strTitle[2];
-	strTitle[passed] = " Continue to :  ";
-	strTitle[redirect] = " Redirect to :  ";
+	strTitle[passed] = " Continue to : ";
+	strTitle[redirect] = " Redirect to : ";
 	for (unsigned int i = passed; i <= redirect; i++){
 		if (!nextTask[i].empty()){
 			tmpname = "[" + nextTask[i] + "]";

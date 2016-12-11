@@ -129,16 +129,8 @@ bool AssemblyLine::process(OrderManager& finishing, unsigned int n)
 }
 // reporting
 void AssemblyLine::display(std::ostream& os) const
-{
-//	std::cout << "KSH-------AssemblyLine::display" << std::endl;
-	//std::vector<Processor>::const_iterator iter = this->cbegin();
-	//for (; iter != this->cend(); iter++){
-	//	iter->display(os);		
-	//}
-
-
-	std::vector<Processor>::const_iterator iter = this->cbegin();
-	for (; iter != this->cend(); iter++){
-		iter->display(os);
+{		
+	for (auto& n : *this){
+		n.display(os);
 	}
 }

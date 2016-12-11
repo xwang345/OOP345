@@ -27,8 +27,8 @@ void OrderManager::validate(const ItemManager& itemMng, std::ostream& os)
 }
 void OrderManager::display(std::ostream& os) const
 {
-	int i = (int)this->size()-1;
-	for (; i >= 0; i--){
-		this->at(i).display(os);
+	for (auto& n : *this){
+		n.display(os);
 	}
+
 }
