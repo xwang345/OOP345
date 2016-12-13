@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SecureData.cpp" />
+    <ClCompile Include="w10.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SecureData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

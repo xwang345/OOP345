@@ -1,5 +1,13 @@
 #include <iostream>
 #include <string>
+#include <thread>
+#include <future>
+
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 class A {
 	int a;
@@ -105,17 +113,73 @@ void callMe(T& pCall){
 	}
 }
 
+void task(int i) {
+	std::cout << i << " Thread id = " <<	std::this_thread::get_id() << std::endl;
+}
+
+
+void task2(std::promise<double>& p){
+	p.set_value(12.45);
+}
 
 
 using namespace std;
 int main() {
 
 
-	Bob a, b;
-	int i = 10;
-	callMe(a);
-	callMe(i);
-	callMe(b);
+	std::thread t1(task, 1);
+	Sleep(100);
+	std::thread t2(task, 2);
+	Sleep(100);	
+
+	std::cout << "main says Hi" << std::endl;
+
+	t2.join();
+	t1.join();
+
+
+	std::vector<std::thread> threads;
+
+	//for (int i = 3; i < 10; i++){
+	//	threads.push_back(std::thread(task, i));
+	//}
+
+
+	for (int i = 0; i < 10; i++){
+
+		threads.push_back(std::thread([=]()
+		{std::cout << i << " Thread id = " << std::this_thread::get_id() << std::endl; }
+		));
+	}
+
+
+	for (auto& n : threads){
+		n.join();
+	}
+
+
+
+	std::promise<double> p;
+	std::future<double> f = p.get_future();
+	std::thread t(task2, std::ref(p));
+	std::cout << "Value = " << f.get() << std::endl;
+	t.join();
+
+
+	
+
+
+
+
+
+	return 1;
+
+
+	//Bob a, b;
+	//int i = 10;
+	//callMe(a);
+	//callMe(i);
+	//callMe(b);
 
 
 
